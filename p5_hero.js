@@ -4,13 +4,13 @@ var containerW;
 var containerH;
 
 let dot = [];
-//let dotSize = 2;
-let dotSize = getRandomInt(1, 9);
+let dotSize = 2;
+//let dotSize = getRandomInt(1, 9);
 
-/*let initRows = 10;
-let initColumns = 15;*/
-let initRows = getRandomInt(5, 11);
-let initColumns = getRandomInt(9, 16);
+let initRows = 10;
+let initColumns = 15;
+/*let initRows = getRandomInt(5, 11);
+let initColumns = getRandomInt(9, 16);*/
 
 let rows = initRows;
 let columns = initColumns;
@@ -19,8 +19,8 @@ let padding;
 let spacingW;
 let spacingH;
 
-//let vectorMaxSize = 20;
-let vectorMaxSize = getRandomInt(16, 21);
+let vectorMaxSize = 20;
+//let vectorMaxSize = getRandomInt(16, 21);
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
@@ -30,11 +30,7 @@ function getRandomInt(min, max) {
 
 function setup() {
   containerW = document.querySelector("#canvas-c").offsetWidth;
-
-  // Adjust canvas height at start (must be window total height - navbar height)
-  containerH =
-    document.querySelector("#canvas-c").offsetHeight - navEl.offsetHeight;
-  console.log(containerH);
+  containerH = document.querySelector("#canvas-c").offsetHeight;
 
   var canvas = createCanvas(containerW, containerH);
   canvas.parent("canvas-c");
@@ -51,10 +47,7 @@ function setup() {
 // make canvas size responsive (based on container)
 function windowResized() {
   containerW = document.querySelector("#canvas-c").offsetWidth;
-
-  // Adjust canvas height at start (must be window total height - navbar height)
-  containerH =
-    document.querySelector("#canvas-c").offsetHeight - navEl.offsetHeight;
+  containerH = document.querySelector("#canvas-c").offsetHeight;
 
   vectorMaxSize = containerW * 0.05;
 
@@ -67,7 +60,7 @@ let count = 0;
 function draw() {
   let index = 0;
 
-  background(01);
+  background(0);
 
   for (i = padding; i < containerW; i += spacingW) {
     for (j = padding; j < containerH; j += spacingH) {

@@ -269,6 +269,7 @@ html.lenis {
     padding-bottom: 40px;
     overflow-y: auto;
     background-color: #f7f8f8;
+    background-image: unset;
   }
 
   .fwd-navbar.is-open .fwd-logo-black {
