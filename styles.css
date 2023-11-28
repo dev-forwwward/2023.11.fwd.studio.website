@@ -116,6 +116,16 @@ html.lenis {
   opacity: 0.8;
 }
 
+.fwd-industries-tab {
+  border-bottom: 1px solid var(--neutral--500) !important;
+}
+
+@media only screen and (min-width: 991px) {
+  .fwd-industries-tab.w--current {
+    border-bottom-color: var(--neutral--900) !important;
+  }
+}
+
 @media only screen and (max-width: 991px) {
   .fwd-services-dropdown-list.w-dropdown-list {
     flex-flow: column;
