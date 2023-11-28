@@ -4,7 +4,7 @@ var containerW;
 var containerH;
 
 let dot = [];
-let dotSize = 4;
+let dotSize = 2;
 
 const initRows = 14;
 const rowsDesktop = 7;
@@ -45,7 +45,8 @@ function windowResized() {
     spacingH = (containerH-2*paddingV)/(rows-1);*/
   responsiveMatrix();
 
-  dotSizeCheck();
+  // dot size fixed value
+  //dotSizeCheck();
 
   resizeCanvas(containerW, containerH, true);
 }
@@ -166,7 +167,8 @@ function objListInit(list) {
   spacingW = (containerW - 2 * padding) / (columns - 1);
   spacingH = (containerH - 2 * paddingV) / (rows - 1);
 
-  dotSizeCheck();
+  // dot size fixed value
+  //dotSizeCheck();
 
   let index = 0;
   for (i = padding; i < containerW; i += spacingW) {
