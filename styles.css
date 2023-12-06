@@ -22,6 +22,14 @@ button:focus {
 * Settings
 */
 
+/*a.locked {
+  opacity: 0.25;
+}
+
+.slider-main_link.locked {
+  opacity: 0.5;
+}*/
+
 .fwd-visibility-hidden {
   margin-top: 0;
   height: 0%;
@@ -44,6 +52,7 @@ button:focus {
   height: 100vh;
   top: 0;
   left: 0;
+  bottom: 0;
 }
 
 .show-page::after {
@@ -146,6 +155,10 @@ html.lenis {
     left: 0;
     right: 0;
   }
+
+  .fwd-industries-tab.w--current {
+    border-top: unset;
+  }
 }
 
 .collection-item:hover .fwd-tab-gradient,
@@ -233,6 +246,10 @@ html.lenis {
   transform: rotate(0deg);
 }
 
+.fwd-cursor-text.smaller-text {
+  font-size: 16px; /* default size at 18px */
+}
+
 @media only screen and (max-width: 991px) {
   .fwd-cursor-container {
     display: none;
@@ -258,6 +275,10 @@ html.lenis {
 
 .slide-stripe-c span {
   white-space: nowrap;
+}
+
+.fwd-section.logos {
+  pointer-events: none;
 }
 
 /* NAV */
@@ -335,6 +356,7 @@ html.lenis {
 .fwd-form label.error {
   color: #ff5555;
   font-size: 14px;
+  font-weight: normal;
 }
 
 /* ################################################################################## */
@@ -370,4 +392,28 @@ h2 {
   visibility: hidden;
   position: relative;
   overflow: hidden;
+}
+
+/* Images Aspect Ratio */
+.fwd-industries-image,
+.fwd-work-grid-project-image {
+  aspect-ratio: 16 / 9;
+}
+
+/* EDITED BY ED */
+.fwd-tab-padding-div {
+  z-index: 0;
+  width: 100%;
+  padding-top: 57%;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.fwd-tab-pane {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  z-index: 1;
+  left: 0;
 }

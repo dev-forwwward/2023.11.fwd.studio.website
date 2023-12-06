@@ -1,5 +1,6 @@
 //-------------------
 // PROJECTS LIST
+
 let revealJump = 4;
 let initialReveal = 8;
 let i = 0;
@@ -22,8 +23,6 @@ function caseListInit() {
 
   // Hide every Project that's not the first x number of rows (x = initialReveal)
   cases.forEach((el) => {
-    //i += 1;
-
     if (i >= initialReveal) {
       el.classList.add("fwd-visibility-hidden");
     } else {
@@ -48,7 +47,9 @@ if (filterClearC) {
 if (filterBtn && filterClearC) {
   // filter buttons click event - add click event to each filter
   filterBtn.forEach((btn) => {
-    btn.addEventListener("click", function () {
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+
       // remove selection from Clear by default
       filterClearBtn.classList.remove("fwd-selected");
 
@@ -71,6 +72,9 @@ if (filterBtn && filterClearC) {
 
       // expand all content on filter select
       loadMoreContent();
+      window.setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 500);
     });
   });
 }
@@ -113,4 +117,108 @@ function hideContent() {
   //hide this button, reveal "Load more"
   loadMoreBtn.classList.remove("fwd-hidden");
   showLessBtn.classList.add("fwd-hidden");
+}
+
+// listen for project list opacity changes (means project list change)
+// run reveal sequence if true
+if (document.querySelector(".fwd-work-grid-project-image-wrapper")) {
+  let elRevealed = false;
+  var observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      if (targetNode.style.opacity <= 0) {
+        elRevealed = true;
+
+        let workImgWrapper = document.querySelectorAll(
+          ".fwd-work-grid-project-image-wrapper",
+        );
+        if (workImgWrapper && elRevealed) {
+          elRevealed = false;
+
+          let tl = gsap.timeline({
+            defaults: { overwrite: true },
+          });
+
+          tl.set(workImgWrapper, { autoAlpha: 1 });
+
+          tl.fromTo(
+            workImgWrapper,
+            1,
+            {
+              //width: "0%",
+              xPercent: -100,
+              opacity: 0,
+            },
+            {
+              xPercent: 0,
+              opacity: 1,
+              ease: Power4.out,
+            },
+          );
+
+          tl.fromTo(
+            document.querySelectorAll(".fwd-work-grid-project-image"),
+            1,
+            {
+              xPercent: 100,
+              opacity: 0,
+            },
+            {
+              xPercent: 0,
+              opacity: 1,
+              duration: 0.8,
+              delay: -1,
+              ease: Power4.out,
+            },
+          );
+
+          gsap
+            .timeline({
+              defaults: { overwrite: true },
+            })
+            .fromTo(
+              document.querySelectorAll(
+                ".fwd-work-grid-wrapper .line, .fwd-work-grid-wrapper h5",
+              ),
+              {
+                opacity: 0,
+                y: "8%",
+              },
+              {
+                opacity: 1,
+                y: "0%",
+                duration: 1.2,
+                stagger: 0.05,
+                ease: Power4.out,
+              },
+            )
+            .fromTo(
+              document.querySelectorAll(".fwd-work-page"),
+              {
+                opacity: 0,
+                yPercent: 8,
+              },
+              {
+                opacity: 1,
+                yPercent: 0,
+                delay: 0.5,
+                duration: 1.2,
+                stagger: 0.1,
+                ease: Power4.out,
+              },
+              "<",
+            );
+        }
+      }
+    });
+  });
+
+  // Notify me of style changes
+  var observerConfig = {
+    attributes: true,
+    attributeFilter: ["style"],
+  };
+
+  var targetNode = document.querySelector(".fwd-work-grid.w-dyn-items");
+
+  observer.observe(targetNode, observerConfig);
 }

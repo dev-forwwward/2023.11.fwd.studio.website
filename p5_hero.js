@@ -32,6 +32,9 @@ function setup() {
   containerW = document.querySelector("#canvas-c").offsetWidth;
   containerH = document.querySelector("#canvas-c").offsetHeight;
 
+  // Adjust canvas height at start (must be window total height - navbar height)
+  //containerH = document.querySelector("#canvas-c").offsetHeight - navEl.offsetHeight;
+
   var canvas = createCanvas(containerW, containerH);
   canvas.parent("canvas-c");
 
@@ -48,6 +51,9 @@ function setup() {
 function windowResized() {
   containerW = document.querySelector("#canvas-c").offsetWidth;
   containerH = document.querySelector("#canvas-c").offsetHeight;
+
+  // Adjust canvas height at start (must be window total height - navbar height)
+  //containerH = document.querySelector("#canvas-c").offsetHeight - navEl.offsetHeight;
 
   vectorMaxSize = containerW * 0.05;
 
@@ -86,8 +92,8 @@ class Vector {
     let n = map(
       dist(x, y, mouseX, mouseY),
       0,
-      dist(0, 0, width, height),
-      vectorMaxSize / 2,
+      dist(0, 0, width - padding * 2, height - padding * 2),
+      vectorMaxSize * 0.1,
       vectorMaxSize,
     );
     this.vector.setMag(n);
