@@ -394,12 +394,6 @@ h2 {
   overflow: hidden;
 }
 
-/* Images Aspect Ratio */
-.fwd-industries-image,
-.fwd-work-grid-project-image {
-  aspect-ratio: 16 / 9;
-}
-
 /* EDITED BY ED */
 .fwd-tab-padding-div {
   z-index: 0;
