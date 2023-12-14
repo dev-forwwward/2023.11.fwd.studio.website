@@ -4,6 +4,7 @@
 // Split text into words and characters
 const heading1Split = new SplitType("h1", { types: "words" });
 const heading2Split = new SplitType("h2", { types: "words, lines" });
+const h2Split = new SplitType(".h2", { types: "words" });
 const heading3Split = new SplitType("h3", { types: "lines" });
 const heading4Split = new SplitType("h4", { types: "lines" });
 const heading5Split = new SplitType("h5", { types: "lines" });
@@ -83,6 +84,30 @@ heading2.forEach((h2) => {
     })
     .from(
       h2.querySelectorAll(".word"),
+      {
+        opacity: 0,
+        y: "80%",
+        delay: 0.2,
+        duration: 0.5,
+        ease: "power2",
+        stagger: { amount: 0.35 },
+      },
+      "<",
+    );
+});
+
+// Header 2 (.h2 CLASS) - Reveal
+document.querySelectorAll(".h2").forEach((h2Class) => {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: h2Class,
+        start: "top bottom",
+        toggleActions: "play none none none",
+      },
+    })
+    .from(
+      h2Class.querySelectorAll(".word"),
       {
         opacity: 0,
         y: "80%",
