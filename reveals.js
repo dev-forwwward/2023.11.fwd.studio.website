@@ -97,28 +97,34 @@ heading2.forEach((h2) => {
 });
 
 // Header 2 (.h2 CLASS) - Reveal
-document.querySelectorAll(".h2").forEach((h2Class) => {
-  gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: h2Class,
-        start: "top bottom",
-        toggleActions: "play none none none",
-      },
-    })
-    .from(
-      h2Class.querySelectorAll(".word"),
-      {
-        opacity: 0,
-        y: "80%",
-        delay: 0.2,
-        duration: 0.5,
-        ease: "power2",
-        stagger: { amount: 0.35 },
-      },
-      "<",
-    );
-});
+if (document.querySelector(".h2")) {
+  console.log(".h2 element found");
+  document.querySelectorAll(".h2").forEach((h2Class) => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: h2Class,
+          start: "top bottom",
+          toggleActions: "play none none none",
+        },
+      })
+      .from(
+        h2Class.querySelectorAll(".word"),
+        {
+          opacity: 0,
+          y: "80%",
+          delay: 0.2,
+          duration: 0.5,
+          ease: "power2",
+          stagger: { amount: 0.35 },
+          onComplete: ()=>{
+            console.log(".h2 reveal animation complete");
+          }
+        },
+        "<",
+      );
+  });
+}
 
 // Header 3 - Reveal
 heading3.forEach((h3) => {
