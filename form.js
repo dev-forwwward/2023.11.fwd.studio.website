@@ -1,4 +1,4 @@
-var $form = $("form");
+var $form = $("form-contact-page");
 $.validator.addMethod("letters", function (value, element) {
   return this.optional(element) || value == value.match(/^[a-zA-Z\s]*$/);
 });
