@@ -1,10 +1,8 @@
-console.log("TESTE");
-
 var containerW;
 var containerH;
 
 let dot = [];
-let dotSize = 4;
+let dotSize = 2;
 
 const initRows = 14;
 const rowsDesktop = 7;
@@ -45,7 +43,8 @@ function windowResized() {
     spacingH = (containerH-2*paddingV)/(rows-1);*/
   responsiveMatrix();
 
-  dotSizeCheck();
+  // dot size fixed value
+  //dotSizeCheck();
 
   resizeCanvas(containerW, containerH, true);
 }
@@ -114,21 +113,47 @@ class Vector {
 
     let n;
 
-    if (width > 901) {
+    n = map(
+      dist(x, y, mouseX, mouseY),
+      0,
+      dist(0, 0, width, height),
+      containerW * 0.05 * 0.1,
+      containerW * 0.05,
+    );
+
+    /*if (width > 901) {
       n = map(
         dist(x, y, mouseX, mouseY),
         0,
         dist(0, 0, width, height),
-        spacingW / 2 - 4,
-        0,
+        containerW * 0.05 * 0.1,
+        containerW * 0.05,
       );
     } else if (width <= 901 && width > 580) {
-      n = map(dist(x, y, mouseX, mouseY), 0, dist(0, 0, width, height), 14, 0);
+      n = map(
+        dist(x, y, mouseX, mouseY),
+        0,
+        dist(0, 0, width - padding * 2, height - padding * 2),
+        containerW * 0.05 * 0.1,
+        containerW * 0.05,
+      );
     } else if (width <= 320) {
-      n = map(dist(x, y, mouseX, mouseY), 0, dist(0, 0, width, height), 6, 0);
+      n = map(
+        dist(x, y, mouseX, mouseY),
+        0,
+        dist(0, 0, width - padding * 2, height - padding * 2),
+        6 * 0.1,
+        6,
+      );
     } else {
-      n = map(dist(x, y, mouseX, mouseY), 0, dist(0, 0, width, height), 10, 0);
-    }
+      n = map(
+        dist(x, y, mouseX, mouseY),
+        0,
+        dist(0, 0, width - padding * 2, height - padding * 2),
+        containerW * 0.05 * 0.1,
+        containerW * 0.05,
+      );
+    }*/
 
     this.vector.setMag(n);
 
@@ -166,7 +191,8 @@ function objListInit(list) {
   spacingW = (containerW - 2 * padding) / (columns - 1);
   spacingH = (containerH - 2 * paddingV) / (rows - 1);
 
-  dotSizeCheck();
+  // dot size fixed value
+  //dotSizeCheck();
 
   let index = 0;
   for (i = padding; i < containerW; i += spacingW) {

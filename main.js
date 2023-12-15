@@ -1,23 +1,22 @@
 //Smopothscroller
 gsap.registerPlugin(ScrollTrigger);
 
-// All images and assets loaded
-/*document.addEventListener("load", function () {
-  ScrollTrigger.refresh();
-});
+if (history.scrollRestoration || window.history.scrollRestoration) {
+  history.scrollRestoration = "manual";
+  window.history.scrollRestoration = "manual";
+}
 
-let smoother = ScrollSmoother.create({
-  wrapper: "#smooth-wrapper",
-  content: "#smooth-content",
-  smooth: 1,
-  effects: true
-});*/
-
-/*document
-  .querySelector(".fwd-services-dropdown-toggle")
-  .setAttribute("aria-expanded", "true");*/
+let goingToAnchor = false;
 
 document.addEventListener("DOMContentLoaded", () => {
+  // check if loading from URL with anchor mention
+  if (window.location.href.indexOf("#") > -1) {
+    goingToAnchor = true;
+  } else {
+    // reset anchor checker boolean
+    goingToAnchor = false;
+  }
+
   // Show Loader and Cursor Container on page load
   if (document.querySelector(".fwd-cursor-container")) {
     document.querySelector(".fwd-cursor-container").style.display = "block";
@@ -36,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     ).addClass("w--open");
 
     $(".fwd-dropdown-wrap").on("click", function () {
-      console.log("click");
       $(
         ".collection-item:first-child .fwd-services-dropdown .fwd-services-dropdown-toggle",
       ).removeClass("w--open");
@@ -56,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   requestAnimationFrame(raf);
+
   //-----------------------------------------------
 
   // Hide hero content container
@@ -72,7 +71,14 @@ document.addEventListener("DOMContentLoaded", () => {
       window.setTimeout(() => {
         document.querySelector(".hide-page").classList.remove("show-page");
         document.querySelector(".hide-page").classList.remove("hide-page");
-      }, 1000);
+      }, 850);
+
+      // reset scroll position on load, after allowing page overflow
+      // but *only* if URL has no anchor mention
+      if (!goingToAnchor) {
+        document.querySelector("html").scroll(0, 0);
+        window.scroll(0, 0);
+      }
     }, 50);
   }
 
@@ -116,11 +122,9 @@ document.addEventListener("DOMContentLoaded", () => {
     navbarReveal(2.4);
     heroContentReveal(2.8);
 
-    window.scrollTo(0, 0);
-
     //console.log("initializing session.");
   } else {
-    navbarReveal(0.25);
+    navbarReveal(0.2);
 
     if (loader) {
       document.querySelector("body").classList.remove("overflow-hidden");
@@ -139,8 +143,8 @@ document.addEventListener("DOMContentLoaded", () => {
     gsap.from(document.querySelectorAll(".fwd-navbar-el"), {
       opacity: 0,
       y: "20%",
-      stagger: 0.15,
-      duration: 0.5,
+      stagger: 0.1,
+      duration: 0.45,
       delay: seconds,
     });
   }
@@ -149,50 +153,54 @@ document.addEventListener("DOMContentLoaded", () => {
   function heroContentReveal(seconds) {
     // Hero Content Reveal
 
-    let tma = gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: heroContentContainer,
-          start: "bottom bottom",
-          toggleActions: "play none play reverse",
-        },
-      })
-      .to(heroContentContainer, {
-        opacity: 1,
-        delay: seconds,
-      })
-      .from(
-        heroContentContainer.querySelectorAll(".word"),
-        {
-          opacity: 0,
-          y: "100%",
-          duration: 0.5,
-          ease: "power3.out",
-          stagger: 0.1,
-        },
-        "<",
-      )
-      .from(
-        heroContentContainer.querySelector(".fwd-button"),
-        {
-          opacity: 0,
-          x: "-20%",
-          duration: 0.6,
-          ease: "power3.out",
-          delay: 0.5,
-        },
-        "<",
-      )
-      .from(
-        heroContentContainer.querySelector(".fwd-webflow-specialists-wrapper"),
-        {
-          opacity: 0,
-          duration: 1,
-          ease: "power3.out",
-          delay: 0.5,
-        },
-        "<",
-      );
+    if (heroContentContainer) {
+      let tma = gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: heroContentContainer,
+            start: "bottom bottom",
+            toggleActions: "play none play reverse",
+          },
+        })
+        .to(heroContentContainer, {
+          opacity: 1,
+          delay: seconds,
+        })
+        .from(
+          heroContentContainer.querySelectorAll(".word"),
+          {
+            opacity: 0,
+            y: "100%",
+            duration: 0.5,
+            ease: "power3.out",
+            stagger: 0.1,
+          },
+          "<",
+        )
+        .from(
+          heroContentContainer.querySelector(".fwd-button"),
+          {
+            opacity: 0,
+            x: "-20%",
+            duration: 0.6,
+            ease: "power3.out",
+            delay: 0.5,
+          },
+          "<",
+        )
+        .from(
+          heroContentContainer.querySelector(
+            ".fwd-webflow-specialists-wrapper",
+          ),
+          {
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out",
+            delay: 0.5,
+          },
+          "<",
+        );
+    }
   }
 
   //-----------------------------------------------
@@ -219,7 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let swiperHoverText = "Swipe";
 
   function mouseFollowerInit() {
-    console.log("Running mouseFollowerInit()");
+    //console.log("Running mouseFollowerInit()");
 
     hoverAreas = document.querySelectorAll(".fwd-hover-area");
 
@@ -248,11 +256,25 @@ document.addEventListener("DOMContentLoaded", () => {
         if (area.classList.contains("swiper-slide")) {
           cursor.querySelector(".fwd-cursor-text").innerHTML = swiperHoverText;
         }
+
+        console.log(area.parentNode.getAttribute("locked"));
+        if (area.parentNode.getAttribute("locked") == "1") {
+          area.classList.add("locked");
+          cursor
+            .querySelector(".fwd-cursor-text")
+            .classList.add("smaller-text");
+          cursor.querySelector(".fwd-cursor-text").innerHTML =
+            "Password Protected";
+        }
       });
 
       // on leaving hover area
       area.addEventListener("mouseleave", (e) => {
         ball.classList.remove("hovering");
+        area.classList.remove("locked");
+        cursor
+          .querySelector(".fwd-cursor-text")
+          .classList.remove("smaller-text");
         cursor.querySelector(".fwd-cursor-text").innerHTML = cursorDefaultText;
       });
     });
@@ -263,18 +285,8 @@ document.addEventListener("DOMContentLoaded", () => {
   //-----------------------------------------------
   // Home Services Accordion Interaction - 1st tab open by default
   if (document.querySelector(".fwd-services-dropdown-toggle")) {
-    console.log(
-      "before: " +
-        document.querySelectorAll(".fwd-services-dropdown-toggle")[0]
-          .ariaExpanded,
-    );
     document.querySelectorAll(".fwd-services-dropdown-toggle")[0].ariaExpanded =
       "true";
-    console.log(
-      "after: " +
-        document.querySelectorAll(".fwd-services-dropdown-toggle")[0]
-          .ariaExpanded,
-    );
     document
       .querySelector(".fwd-services-dropdown-toggle")
       .classList.add("w--open");

@@ -23,31 +23,31 @@ $(".slider-main_component").each(function (index) {
     spaceBetween: "2%",
     rewind: false,
     mousewheel: {
-      forceToAxis: true
+      forceToAxis: true,
     },
     keyboard: {
       enabled: true,
-      onlyInViewport: true
+      onlyInViewport: true,
     },
     breakpoints: {
       // mobile landscape
       480: {
         slidesPerView: "auto",
-        spaceBetween: "4%"
+        spaceBetween: "4%",
       },
       // tablet
       768: {
         slidesPerView: "auto",
-        spaceBetween: "4%"
+        spaceBetween: "4%",
       },
       // desktop
       992: {
         slidesPerView: "auto",
-        spaceBetween: "2%"
-      }
+        spaceBetween: "2%",
+      },
     },
     slideActiveClass: "is-active",
-    slideDuplicateActiveClass: "is-active"
+    slideDuplicateActiveClass: "is-active",
   });
 
   const cases = new Swiper($(this).find(".swiper.is-case")[0], {
@@ -62,30 +62,30 @@ $(".slider-main_component").each(function (index) {
     spaceBetween: "2%",
     rewind: false,
     mousewheel: {
-      forceToAxis: true
+      forceToAxis: true,
     },
     keyboard: {
       enabled: true,
-      onlyInViewport: true
+      onlyInViewport: true,
     },
     breakpoints: {
       // mobile landscape
       480: {
         slidesPerView: "auto",
-        spaceBetween: "4%"
+        spaceBetween: "4%",
       },
       // tablet
       768: {
         slidesPerView: "auto",
-        spaceBetween: "4%"
+        spaceBetween: "4%",
       },
       // desktop
       992: {
         slidesPerView: "auto",
-        spaceBetween: "2%"
-      }
+        spaceBetween: "2%",
+      },
     },
     slideActiveClass: "is-active",
-    slideDuplicateActiveClass: "is-active"
+    slideDuplicateActiveClass: "is-active",
   });
 });
