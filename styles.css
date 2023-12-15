@@ -353,7 +353,7 @@ html.lenis {
 * FORM 
 */
 
-.fwd-form label.error {
+form label.error {
   color: #ff5555;
   font-size: 14px;
   font-weight: normal;
