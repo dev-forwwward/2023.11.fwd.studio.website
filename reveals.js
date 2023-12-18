@@ -466,8 +466,8 @@ imgContainer.forEach((container) => {
   let image = container.querySelector("img");
   let tl = gsap.timeline({
     scrollTrigger: {
-      trigger: container.parentNode,
-      start: "top center",
+      trigger: container,
+      start: "top 90%",
       toggleActions: "play none play none",
     },
   });
