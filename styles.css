@@ -394,6 +394,10 @@ h2 {
   overflow: hidden;
 }
 
+.fwd-image-wrapper img {
+  min-width: 100%;
+}
+
 /* EDITED BY ED */
 .fwd-tab-padding-div {
   z-index: 0;
