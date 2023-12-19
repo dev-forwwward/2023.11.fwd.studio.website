@@ -380,10 +380,7 @@ h2 {
 }
 
 .fwd-landing-hero-header .word {
-  -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(to right, #626262 6.23%, #2b2b2b 94.26%);
-  background-clip: text;
-  -webkit-background-clip: text;
+  display: contents !important;
 }
 
 /* Images Reveal */
