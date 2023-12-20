@@ -379,10 +379,6 @@ h2 {
   background-clip: text;
 }
 
-.fwd-landing-hero-header .word {
-  display: contents !important;
-}
-
 /* Images Reveal */
 .fwd-image-wrapper {
   visibility: hidden;
