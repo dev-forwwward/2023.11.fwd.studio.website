@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let heading2 = document.querySelectorAll("h2");
   let heading3 = document.querySelectorAll("h3");
   let heading4 = document.querySelectorAll("h4");
-  let heading5 = document.querySelectorAll(":not(.fwd-work-grid-wrapper) h5");
+  let heading5 = document.querySelectorAll(":not(.fwd-collection-grid-wrapper) h5");
 
   let subtitles = document.querySelectorAll(".fwd-overline");
 
@@ -492,7 +492,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Work Gallery Images Reveal
   let workSection = document.querySelector(".fwd-work-hero");
   let workImgWrapper = document.querySelectorAll(
-    ".fwd-work-grid-project-image-wrapper",
+    ".fwd-collection-grid-image-wrapper",
   );
   if (workImgWrapper) {
     let tl = gsap.timeline({
@@ -522,7 +522,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     tl.fromTo(
-      document.querySelectorAll(".fwd-work-grid-project-image"),
+      document.querySelectorAll(".fwd-collection-grid-image"),
       1,
       {
         xPercent: 100,
@@ -548,7 +548,7 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .fromTo(
         document.querySelectorAll(
-          ".fwd-work-grid-wrapper .line, .fwd-work-grid-wrapper h5",
+          ".fwd-collection-grid-wrapper .line, .fwd-collection-grid-wrapper h5",
         ),
         {
           opacity: 0,
@@ -563,7 +563,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
       )
       .fromTo(
-        document.querySelectorAll(".fwd-work-page"),
+        document.querySelectorAll(".fwd-collection-grid-title-wrapper"),
         {
           opacity: 0,
           yPercent: 8,
