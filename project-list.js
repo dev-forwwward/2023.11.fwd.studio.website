@@ -7,7 +7,7 @@ let i = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  let cases = document.querySelectorAll(".fwd-work-grid-project");
+  let cases = document.querySelectorAll(".fwd-collection-grid");
 
   // convert faq rows node list into array
   let casesArray = Array.prototype.slice.call(cases);
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     i = 0;
 
     // update cases list elements after filtering
-    cases = document.querySelectorAll(".fwd-work-grid-project");
+    cases = document.querySelectorAll(".fwd-collection-grid");
     casesArray = Array.prototype.slice.call(cases);
 
     // Hide every Project that's not the first x number of rows (x = initialReveal)
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // listen for project list opacity changes (means project list change)
   // run reveal sequence if true
-  if (document.querySelector(".fwd-work-grid-project-image-wrapper")) {
+  if (document.querySelector(".fwd-collection-grid-image-wrapper")) {
     let elRevealed = false;
     var observer = new MutationObserver(function (mutations) {
       mutations.forEach(function (mutation) {
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
           elRevealed = true;
 
           let workImgWrapper = document.querySelectorAll(
-            ".fwd-work-grid-project-image-wrapper",
+            ".fwd-collection-grid-image-wrapper",
           );
           if (workImgWrapper && elRevealed) {
             elRevealed = false;
@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
             tl.fromTo(
-              document.querySelectorAll(".fwd-work-grid-project-image"),
+              document.querySelectorAll(".fwd-collection-grid-image"),
               1,
               {
                 xPercent: 100,
@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
               })
               .fromTo(
                 document.querySelectorAll(
-                  ".fwd-work-grid-wrapper .line, .fwd-work-grid-wrapper h5",
+                  ".fwd-collection-grid-wrapper .line, .fwd-collection-grid-wrapper h5",
                 ),
                 {
                   opacity: 0,
@@ -220,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
       attributeFilter: ["style"],
     };
 
-    var targetNode = document.querySelector(".fwd-work-grid.w-dyn-items");
+    var targetNode = document.querySelector(".fwd-collection-grid.w-dyn-items");
 
     observer.observe(targetNode, observerConfig);
   }
