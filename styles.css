@@ -19,6 +19,17 @@ button:focus {
   border: 0;
 }
 
+/* filter buttons */
+.fwd-selected {
+  color: var(--neutral--900);
+  background-color: var(--neutral--50-501);
+}
+
+.fwd-filters-alt-wrapper .fwd-selected {
+  color: var(--neutral--50-501);
+  background-color: var(--neutral--900);
+}
+
 /*
 * Settings
 */
