@@ -1,7 +1,7 @@
 //-------------------
 // PROJECTS LIST
 
-let revealJump = 3;
+let revealJump = 2;
 let initialReveal = 6;
 let i = 0;
 
