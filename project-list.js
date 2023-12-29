@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
             tl.fromTo(
-              document.querySelectorAll(".fwd-collection-grid-image"),
+              document.querySelectorAll(".fwd-collection-grid-item-image"),
               1,
               {
                 xPercent: 100,
