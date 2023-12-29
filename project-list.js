@@ -1,13 +1,13 @@
 //-------------------
 // PROJECTS LIST
 
-let revealJump = 4;
-let initialReveal = 8;
+let revealJump = 3;
+let initialReveal = 6;
 let i = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  let cases = document.querySelectorAll(".fwd-collection-grid");
+  let cases = document.querySelectorAll(".fwd-collection-grid-item");
 
   // convert faq rows node list into array
   let casesArray = Array.prototype.slice.call(cases);
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     i = 0;
 
     // update cases list elements after filtering
-    cases = document.querySelectorAll(".fwd-collection-grid");
+    cases = document.querySelectorAll(".fwd-collection-grid-item");
     casesArray = Array.prototype.slice.call(cases);
 
     // Hide every Project that's not the first x number of rows (x = initialReveal)
