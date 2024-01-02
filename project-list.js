@@ -63,6 +63,9 @@ document.addEventListener("DOMContentLoaded", () => {
             // so we have to first select its <a> element to then add the selection class
             if (filterBtn[i] == filterClearC) {
               filterClearBtn.classList.add("fwd-selected");
+
+              // prevent scroll to top default
+              e.preventDefault();
             } else {
               filterBtn[i].classList.add("fwd-selected");
             }
