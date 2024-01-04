@@ -16,7 +16,7 @@ a {
 a:focus,
 button:focus {
   outline: none;
-  border: 0;
+  /*border: 0;*/
 }
 
 /* filter buttons */
